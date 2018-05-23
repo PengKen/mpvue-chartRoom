@@ -28,7 +28,7 @@
           <i class="iconfont delete-icon" @tap="deletePassword" v-show="showPasswordDelete">&#xe609;</i>
         </div>
       </div>
-      <button  :loading="showLoading" class="login-button">Login</button>
+      <button  :loading="showLoading" class="login-button" @tap="go">Login</button>
     </form>
 
 
@@ -38,6 +38,7 @@
 
 <script>
 import card from '@/components/card'
+import { post } from '@/utils/httpUtil'
 
 export default {
   data () {
@@ -57,10 +58,10 @@ export default {
   },
   watch: {
     name (newVal) {
-      this.showNameDelete = newVal !== '' ? true : false
+      this.showNameDelete = newVal !== ''
     },
     password (newVal) {
-      this.showPasswordDelete = newVal !== '' ? true : false
+      this.showPasswordDelete = newVal !== ''
     }
 
   },
@@ -70,7 +71,15 @@ export default {
       wx.navigateTo({ url })
     },
     go () {
-      wx.redirectTo({url: '/pages/counter/main'})
+      this.showLoading = true
+      post().then(res => {
+        this.showLoading = false
+        this.$store.dispatch(this.$type.HANDLE_USERINFO, res).then(state => {
+          // wx.redirectTo({url: '/pages/home/main'})
+          //如果是tabBar页面，请用wx.switchTab
+          wx.switchTab({url: '/pages/home/main'})
+        })
+      })
     },
     getUserInfo () {
       // 调用登录接口
@@ -133,7 +142,7 @@ export default {
     .login-logo{
       position: absolute;
       z-index: 998;
-      top:300rpx;
+      top:250rpx;
       width:250rpx;
       height: 100rpx;
       left: 50%;
@@ -146,7 +155,7 @@ export default {
     .form{
         position: absolute;
         z-index: 997;
-        top:250px ;
+        top:200px ;
         width: 100%;
         color: wheat;
         .name,.password{
@@ -156,7 +165,7 @@ export default {
           margin-left: 50rpx;
           margin-right: 10rpx;
           .login-icon{
-            line-height: 80rpx;
+            line-height: 50rpx;
           }
           .input-form{
             padding: 0 80rpx 0 20rpx;
@@ -166,16 +175,16 @@ export default {
             left: 10rpx;
             input{
               position: absolute;
-              top: 20rpx;
+              top: 3rpx;
               left: 20rpx;
               width: 90%;
             }
             .delete-icon{
-              line-height: 80rpx;
+              line-height: 50rpx;
               font-size: 25rpx;
               position: absolute;
               right: 30rpx;
-              top:10rpx
+              top:3rpx
             }
           }
         }
