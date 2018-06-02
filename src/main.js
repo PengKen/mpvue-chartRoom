@@ -7,13 +7,14 @@ App.mpType = 'app'
 Vue.prototype.$type = type
 Vue.prototype.$store = store
 const app = new Vue(App)
+console.log(store)
 app.$mount()
 
 export default {
   // 这个字段走 app.json
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
-    pages: ['pages/logs/main', '^pages/index/main', 'pages/home/main', 'pages/home/chat/main'],
+    pages: ['pages/home/neighbor/main', '^pages/index/main', 'pages/home/main', 'pages/home/chat/main'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#1E0D32',
@@ -35,7 +36,7 @@ export default {
       // borderStyle，不写默认就是黑，那就黑好了，white的话，会少一条分隔线，跟页面混在一起了
       'borderStyle': 'black',
       'list': [{
-        'pagePath': 'pages/logs/main',
+        'pagePath': 'pages/home/neighbor/main',
 
         // iconPath图标是非必填，只是tab栏会变矮，自然selectedIconPath也可不写
         'iconPath': '/static/logo.png',

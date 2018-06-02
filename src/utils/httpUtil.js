@@ -1,21 +1,27 @@
-export  const  post = (data)=>{
-  return new Promise((resolve,reject)=>{
+import store from '@/vuex'
+const API = (url, data = {}, method = 'GET') => {
+
+  return new Promise((resolve, reject) => {
     wx.request({
-      url: 'http://localhost:3000/abc/login', //仅为示例，并非真实的接口地址
+      url: 'http://localhost:3000/logins', // 仅为示例，并非真实的接口地址
       data: data,
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'x-authorization-token': store.state.token
       },
-      method:'POST',
-      success: function(res) {
+      method: 'POST',
+      success: function (res) {
+        console.log("sucess")
         resolve(res)
       },
-      fail:function () {
-        console.log("somthing error")
+      fail: function (err) {
+        console.log(err)
+      },
+      complete: function () {
+        console.log("complete")
       }
     })
   })
 }
 
-
-
+export default API

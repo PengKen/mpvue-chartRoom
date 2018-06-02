@@ -1,8 +1,9 @@
 <template>
   <div id="friends">
     <ul>
-      <li>
-        <a href="chat/main">
+      <li @tap="go">
+        <!--<a href="chat/main">-->
+        <a>
           <div class="friend">
           <div class="avatar-wrapper">
             <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527079654278&di=103879dac0d0d7eabaecbf40b02c42e2&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F92%2F42%2F47958PICSKe_1024.jpg" alt="">
@@ -30,24 +31,16 @@ export default {
 
       },
       mounted () {
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000
-        })
-        wx.showActionSheet({
-          itemList: ['A', 'B', 'C'],
-          success: function (res) {
-            console.log(res.tapIndex)
-          },
-          fail: function (res) {
-            console.log(res.errMsg)
-          }
-        })
+
       },
       computed: {
         time () {
           return formatDate(new Date())
+        }
+      },
+      methods:{
+        go(){
+          wx.redirectTo({url: '/pages/home/chat/main'})
         }
       }
     }

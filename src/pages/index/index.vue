@@ -38,7 +38,6 @@
 
 <script>
 import card from '@/components/card'
-import { post } from '@/utils/httpUtil'
 
 export default {
   data () {
@@ -72,14 +71,14 @@ export default {
     },
     go () {
       this.showLoading = true
-      post().then(res => {
-        this.showLoading = false
-        this.$store.dispatch(this.$type.HANDLE_USERINFO, res).then(state => {
-          // wx.redirectTo({url: '/pages/home/main'})
-          //如果是tabBar页面，请用wx.switchTab
+      console.log(this)
+      this.$store.dispatch('HANDLE_LOGIN',{name: this.name, password: this.password})
+        .then(state => {
+          this.showLoading = false
           wx.switchTab({url: '/pages/home/main'})
+          // wx.redirectTo({url: '/pages/home/main'})
+          // 如果是tabBar页面，请用wx.switchTab
         })
-      })
     },
     getUserInfo () {
       // 调用登录接口
@@ -104,10 +103,45 @@ export default {
 
   created () {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+
+    // let simple = wx.connectSocket({
+    //   url: 'ws://localhost:8080/simple',
+    //   success: function (res) {
+    //     console.log('simple connect')
+    //   }
+    // })
+    // simple.onMessage((data) => {
+    //   console.log(data)
+    // })
+    //
+    // simple.onClose(() => {
+    //   console.log('simple close')
+    // })
+    //
+    // let mult = wx.connectSocket({
+    //   url: 'ws://localhost:8080/simple',
+    //   success: function (res) {
+    //     console.log('mult connect')
+    //   }
+    // })
+    // mult.onClose(function () {
+    //   console.log('mult close')
+    // })
+    // mult.onMessage((data) => {
+    //   console.log(data)
+    // })
+    // // mult.onMessgae((data) => {
+    // //   console.log(data)
+    // // })
+    //
+    // wx.onSocketOpen(function (res) {
+    //   wx.sendSocketMessage({
+    //     data: 123
+    //   })
+    // })
+    // this.getUserInfo()
   },
   mounted () {
-    console.log(wx)
   }
 }
 </script>

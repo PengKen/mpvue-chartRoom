@@ -19,17 +19,16 @@
 
 <script>
 
-
 export default {
-  data(){
+  data () {
     return {
-      list:[
-        {isFriend:true,content:"asdasdasdasasdasdasdasasdasdas"},
-        {isFriend:false,content:"asdasdasdsdasasdasdas"}
+      list: [
+        {isFriend: true, content: 'asdasdasdasasdasdasdasasdasdas'},
+        {isFriend: false, content: 'asdasdasdsdasasdasdas'}
       ],
-      friend:'friend',
-      user:'user',
-      content:''
+      friend: 'friend',
+      user: 'user',
+      content: ''
     }
   },
   config: {

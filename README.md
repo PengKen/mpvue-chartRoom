@@ -11,6 +11,11 @@
 （1）、只能使用base64格式或者链接图片，或者使用image
 （2）、不支持使用backgorund-image加载本地图片
 
+关于websocekt
+（1）、后端node.js不能使用socket.io。原因在socket.io需要前后端都引入socket.io这一套库，无论是H5的websocket还是
+      小程序的websocket都不支持
+
+
 > A Mpvue project
 
 ## Build Setup
