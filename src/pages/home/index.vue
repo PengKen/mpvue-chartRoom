@@ -40,7 +40,7 @@ export default {
       },
       methods:{
         go(){
-          wx.redirectTo({url: '/pages/home/chat/main'})
+          wx.navigateTo({url: '/pages/home/chat/main'})
         }
       }
     }

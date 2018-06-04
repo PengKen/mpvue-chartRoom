@@ -39,7 +39,7 @@ export default {
 
 page{
   height: 100%;
-  overflow-y: hidden;
+  /*overflow-y: hidden;*/
 
 }
 

@@ -40,6 +40,11 @@
           unlike: 'unlike'
         }
       },
+      computed:{
+        neighbor(_id){
+          return this.$store.state.neighbors.get(_id)
+        }
+      },
       methods: {
         toggleLike () {
           this.likes ? this.likes = false : this.likes = true

@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as type from './type'
-import API from '@/utils/httpUtil'
-import {HANDLE_USERINFO} from './type'
+import * as mutations from './mutations/mutations'
+import * as actions from './actions/actions'
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
@@ -10,25 +9,11 @@ const store = new Vuex.Store({
       name: '',
       password: ''
     },
-    token: ''
+    token: '',
+    neighbors: new Map()
   },
-  mutations: {
-    HANDLE_LOGIN (state, newUserInfo) {
-      state.user = newUserInfo
-    },
-    HANDLE_AUTHORIZATION_TOKEN (state, token) {
-      state.token = token
-    }
-  },
-  actions: {
-    async HANDLE_LOGIN ({commit, state}, info) {
-
-      let res = await API('/logins,', info, 'POST')
-      commit('HANDLE_LOGIN',info)
-      commit('HANDLE_AUTHORIZATION_TOKEN', res.token)
-      return state
-    }
-  }
+  mutations,
+  actions
 })
 
 export default store
